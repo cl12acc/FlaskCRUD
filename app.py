@@ -8,7 +8,7 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     db.init_app(app)
-    
+
 
     @app.before_request
     def create_table():
@@ -43,7 +43,7 @@ def create_app():
     def RetrieveList():
         films = filmModel.query.all()
         return render_template('index.html',films = films)
-    
+
 
     #  Delete film by filmID
     @app.route('/<int:filmID>/delete', methods=['GET','POST'])
@@ -89,3 +89,4 @@ def create_app():
             return f"The Film ID = {id} Does nit exist"
 
         return render_template('update.html', film = film)
+    return app
