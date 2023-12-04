@@ -7,13 +7,12 @@ def create_app():
 
 
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
- 
+    
 
-    @app.before_request
-    def create_table():
-        db.create_all()
+    # @app.before_request
+    # def create_table():
+    #     db.create_all()
 
 
     @app.route('/create' , methods = ['GET','POST'])
@@ -90,7 +89,3 @@ def create_app():
             return f"The Film ID = {id} Does nit exist"
 
         return render_template('update.html', film = film)
-
-    if __name__ == "__main":
-        app.run(debug=True)
-        app.run(host='localhost', port=5000)
