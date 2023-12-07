@@ -10,33 +10,33 @@ def create_app():
     db.init_app(app)
 
 
-    @app.before_request
-    def create_table():
-        db.create_all()
+    # @app.before_request
+    # def create_table():
+    #     db.create_all()
 
 
-    @app.route('/create' , methods = ['GET','POST'])
-    def create():
-        if request.method == 'GET':
-            return render_template('create.html')
+    # @app.route('/create' , methods = ['GET','POST'])
+    # def create():
+    #     if request.method == 'GET':
+    #         return render_template('create.html')
         
-        if request.method == 'POST':
-            title = request.form['title']
-            yearReleased = request.form['yearReleased']
-            rating = request.form['rating']
-            duration = request.form['duration']
-            genre = request.form['genre']
+    #     if request.method == 'POST':
+    #         title = request.form['title']
+    #         yearReleased = request.form['yearReleased']
+    #         rating = request.form['rating']
+    #         duration = request.form['duration']
+    #         genre = request.form['genre']
 
-            films = filmModel(
-                title=title,
-                yearReleased=yearReleased,
-                rating=rating,
-                duration=duration, 
-                genre=genre,
-            )
-            db.session.add(films)
-            db.session.commit()
-            return redirect('/')
+    #         films = filmModel(
+    #             title=title,
+    #             yearReleased=yearReleased,
+    #             rating=rating,
+    #             duration=duration, 
+    #             genre=genre,
+    #         )
+    #         db.session.add(films)
+    #         db.session.commit()
+    #         return redirect('/')
 
 
     @app.route('/' , methods = ['GET'])
